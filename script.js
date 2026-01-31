@@ -5,7 +5,7 @@ const settings = {
     lerp: 0.05,
 };
 
-const motionManifesto = document.querySelectorAll(".motion_manifesto_line > h1");
+const motionManifesto = document.querySelectorAll(".manifesto_line > h1");
 const tlMain = gsap.timeline({
     scrollTrigger: {
         trigger: settings.trigger,
@@ -18,8 +18,8 @@ const tlMain = gsap.timeline({
 
 const init = () => {
     initLenis();
-    animageMedia();
-}
+    animateMedia();
+}   
 
 const initLenis = () => {
 
@@ -47,14 +47,14 @@ const animateMedia = () => {
 
         const heading = {
             title: element.querySelectorAll("h2"),
-            roles: element.querySelectorAll(".motion_tages > span"),
+            roles: element.querySelectorAll(".motion_tags > span"),
         }
 
         gsap.set(thumbnails, {
             yPercent: 100
         })
         gsap.set(medias, {
-            yPercent: 100
+            clipPath: "inset(0 0 0 0)"
         })
 
         gsap.set([heading.title, heading.roles], {
@@ -69,7 +69,7 @@ const animateMedia = () => {
             .to(medias, {
                 duration: 2,
                 scale: 1.2
-            }, "<0.5")
+            }, "<-0.5")
             .to(medias, {
                 clipPath: "inset(0 0 100% 0)",
             }, ">-0.2")
@@ -80,6 +80,8 @@ const animateMedia = () => {
 
     tlMain.to(motionManifesto, {
         yPercent: 0,
+        stagger: 0.1,
+        duration: 1
     })
 
 }
